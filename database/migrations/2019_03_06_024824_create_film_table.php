@@ -13,16 +13,14 @@ class CreateFilmTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi', function (Blueprint $table) {
-            $table->bigIncrements('id_transaksi');
-            $table->integer('id_film',25);
-            $table->string('nama',50);
-            $table->string('tgl_pinjam',20);
-            $table->string('tgl_kembali',20);
-            $table->string('harga_sewa',20);
-            $table->double('status',50);
-            $table->string('tgl_input',20);
-
+        Schema::create('film', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('id_kategori',25);
+            $table->string('judul_film',50);
+            $table->string('sutradara',20);
+            $table->string('tahun_rilis',20);
+            $table->string('sinopsis',25);
+            $table->string('tgl_input_data',50);
         });
     }
 
