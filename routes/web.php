@@ -26,3 +26,7 @@ Route::get('master',function(){
 Route::get('index',function(){
         return view('dasboard.index');
 });
+
+Route::get('dasboard',function(){
+    return view('dasboard');
+});
