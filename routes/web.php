@@ -18,3 +18,11 @@ Route::get('kategori/{id}', function ($id) {
 });
 
 Route::resource('kategori','KategoriController')->except(['destroy']);
+
+Route::get('master',function(){
+        return view('layouts.master');
+});
+
+Route::get('index',function(){
+        return view('dasboard.index');
+});
