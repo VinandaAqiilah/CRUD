@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\kategori_table;
+use Illuminate\Support\Facades\DB;
 
 class KategoriController extends Controller
 {
@@ -12,11 +13,15 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $kategori = kategori_table::all();
-        return view('kategori', compact('kategori'));
+        //search data
+        if ($request->has('cari')){
+            $kategori = \App\kategori_table::where('nama_kategori','LIKE','%'.$request->cari.'%')->get();
+        } else {
+            $kategori = kategori_table::all();
+        } 
+        return view('category.index', compact('kategori'));
     }
 
     /**
@@ -39,11 +44,11 @@ class KategoriController extends Controller
     {
         // insert data ke table
         DB::table('kategori')->insert([
-            'nama_kategory' => $request->nama_kategory,
+            'nama_kategori' => $request->nama_kategori,
             'slug' => $request->slug,
-            'tgl_input_data' => $request->tanggal_input_data
-
+            "updated_at" => \Carbon\Carbon::now()
         ]);
+
         // alihkan halaman ke halaman
         return redirect('/kategori');
     }
@@ -64,6 +69,12 @@ class KategoriController extends Controller
           'kategori' => $kategori
         ));
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('cari');
+        $hasil = Kategori::where('kategori', 'LIKE', '%' . $query . '%')->paginate(10);
+        return view('dasboard.result', compact('hasil', 'query'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -73,9 +84,9 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kategori = DB::table('kategori')->where('id',$id)->get();
+        return view('dasboard.edit',['kategori' => $kategori]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -83,11 +94,16 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('kategori')->where('id',$request->id)->update([
+            'nama_kategori' => $request->nama_kategori,
+            'slug' => $request->slug
+             
+           
+        ]);
+            return redirect('/kategori');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -96,6 +112,7 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('kategori')->where('id',$id)->delete();
+        return redirect('/kategori');
     }
 }

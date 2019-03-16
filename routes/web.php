@@ -12,21 +12,13 @@
 */
 
 
-Route::get('kategori/{id}', function ($id) {
-    return "halaman kategori".$id;
 
-});
 
 Route::resource('kategori','KategoriController')->except(['destroy']);
 
-Route::get('master',function(){
-        return view('layouts.master');
-});
+Route::get('query', 'KategoriController@search');
 
-Route::get('index',function(){
-        return view('dasboard.index');
-});
-
-Route::get('dasboard',function(){
-    return view('dasboard');
-});
+Route::get('/hapus/destroy/{id}', 'KategoriController@destroy');
+Route::post('/inputdata/store','KategoriController@store');
+Route::get('/editdata/edit/{id}','KategoriController@edit');
+Route::post('/datakategori/update','KategoriController@update');

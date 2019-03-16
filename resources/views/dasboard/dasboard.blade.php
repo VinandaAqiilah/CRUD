@@ -1,17 +1,14 @@
 @extends('master.app')
 @section('content')
-  <!-- Content Wrapper. Contains page content -->
-
-
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+<!-- Content Header (Page header) -->
+<section class="content-header">
       <h1>
-        Test
+        Dashboard
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">Test</li>
       </ol>
     </section>
 
@@ -119,7 +116,7 @@
             <div class="box-body chat" id="chat-box">
               <!-- chat item -->
               <div class="item">
-                <img src="assetslte/dist/img/user4-128x128.jpg" alt="user image" class="online">
+                <img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -146,7 +143,7 @@
               <!-- /.item -->
               <!-- chat item -->
               <div class="item">
-                <img src="assetslte/dist/img/user3-128x128.jpg" alt="user image" class="offline">
+                <img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -161,7 +158,7 @@
               <!-- /.item -->
               <!-- chat item -->
               <div class="item">
-                <img src="assetslte/dist/img/user2-160x160.jpg" alt="user image" class="offline">
+                <img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -519,4 +516,6 @@
 
     </section>
     <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 @endsection
